@@ -36,7 +36,7 @@ body {
 
 main {
   max-width: max-content;
-  margin: 15em auto 0 auto;
+  margin: 3em auto 0 auto;
   padding: 1.5em;
   background-color: rgba(19, 19, 19, 0.3);
   border: 2px solid #fff;
@@ -94,14 +94,42 @@ main {
   background-color: var(--blue-grey-050);
   color: var(--blue-grey-700);
 }
-
-.date-grid button:active,
-.date-grid button.is-selected {
+.button_time{
+  border: 2px solid #fff;
+  padding: 5px;
+  margin: 5px;
+  width: 50px;
+  border-radius: 3px;
+  background-color: rgba(19, 19, 19, 0.3);
+  color: #fff
+}
+.button_time button:hover{
   background-color: var(--teal-100);
   color: var(--teal-900);
 }
-.button_date{
-  border: 0;
-  color: aquamarine;
-  background-color: #39caad;
+.time{
+  text-align: center;
+}
+
+.time button:hover,
+.time button:focus {
+  outline: none;
+  background-color: var(--blue-grey-050);
+  color: var(--blue-grey-700);
+}
+
+h1{
+  text-align: center;
+  color: #fff;
+}
+.card_time{
+  justify-content: center;
+  background-color: rgba(19, 19, 19, 0.3);
+  padding: 40px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
 }
