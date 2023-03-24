@@ -100,3 +100,8 @@ main {
   background-color: var(--teal-100);
   color: var(--teal-900);
 }
+.button_date{
+  border: 0;
+  color: aquamarine;
+  background-color: #39caad;
+}
