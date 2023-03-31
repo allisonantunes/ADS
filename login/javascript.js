@@ -1,4 +1,5 @@
-document.getElementById("mes_ano").innerHTML = 'ola'
+let mes = document.getElementById("mes")
+let ano = document.getElementById("ano")
 let now = new Date
 
 /* document.write ("Hoje é " + now.getDay()
@@ -7,6 +8,5 @@ let now = new Date
 
 mes_nome = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
 
-/* mes_ano.innerHTML = mes_nome[now.getMonth()] */
-mes_ano = 'ola'
-
+mes.innerHTML = mes_nome[now.getMonth()]
+ano.innerHTML = ano[now. getFullYear()]
