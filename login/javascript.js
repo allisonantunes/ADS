@@ -17,11 +17,18 @@ const renderiza_calendario = () => {
     let dias_tag = ""
 
     for (let i = 1; i <= dias_mes; i++) {
-    dias_tag += `<button><time datetime="01">${i}</time></button>`;
+    dias_tag += `<button value="${i}" onclick=horarios()>${i}</button>`;
     }
+    console.log(dias_tag);
 
     dias.innerHTML = dias_tag
+
+/*     function horarios(value, ){
+
+    } */
 }
+
+
 
 
 renderiza_calendario();
