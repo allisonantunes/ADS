@@ -133,3 +133,12 @@ h1{
   margin-right: auto;
   margin-top: 100px;
 }
+
+.confirmar_horario {
+  margin-top: 5px;
+  text-align: center;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+
+}
