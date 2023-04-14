@@ -3,7 +3,8 @@ let ano = document.getElementById("ano")
 let dias = document.querySelector(".date-grid")
 let marcacao = document.querySelector(".confirmar_horario")
 
-let now = new Date
+
+now = new Date
 ano_atual = now.getFullYear()
 mes_atual = now.getMonth()
 
@@ -39,6 +40,3 @@ var meses = mes = mes_nome[mes_atual].toUpperCase()
         marcacao.innerHTML = teste
         
     };
-/*     let tudo = dia_selecionado + hora_selecionada
-    console.log(tudo);
- */
