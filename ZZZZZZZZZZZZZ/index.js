@@ -4,7 +4,6 @@ const mysql = require('mysql2')
 const bodyParser = require('body-parser')
 
 const app = express()
-
 // pegar o body em json
 app.use(
     express.urlencoded({
@@ -13,34 +12,10 @@ app.use(
 )
 app.use(express.json())
 //
-
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
-
 app.use(express.static('public'))
-
 app.use(bodyParser.urlencoded({extended: true}))
-
-/* app.get('/', (req, res) => {
-    res.render("login")
-}) */
-
-app.post('/cadastro', (req, res) => {
-    const name = req.body.name
-    const email = req.body.email
-    const username = req.body.user_name
-    const password = req.body.password
-
-    const sql = `INSERT INTO users (name, email, username, password) VALUES ('${name}','${email}','${username}','${password}')`
-
-    conn.query(sql, function(err) {
-        if(err) {
-            console.log(err)
-            return
-        }
-        res.redirect('/login')
-    })
-})
 
 const conn = mysql.createConnection({
     host: 'localhost',
@@ -57,12 +32,74 @@ conn.connect(function(err) {
     app.listen(3000)
 })
 
-app.post('/', (req, res) => {
-    
-    if(req.body.usuario == username && req.body.senha == password){
-        req.session.login = username
-    }
+
+////////////////////////////////////////////  fim  conexao com bd
+
+////////////////////////////////////////////  login
+app.get('/', (req, res) => {
     res.render("login")
+})
+
+app.post('/', (req, res) => {
+
+    const username = req.body.user_name
+    const password = req.body.password
+    
+    const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+
+    conn.query(sql, function(err) {
+        if(err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/logado')
+    })
+    
+})
+app.get('/logado', (req, res) => {
+    res.render("logado")
+})
+
+//////////////////////////////////////////// fim  login
+
+////////////////////////////////////////////    cadastro
+app.get('/cadastro', (req, res) => {
+    res.render("cadastro")
+})
+
+app.post('/cadastro', (req, res) => {
+    const name = req.body.name
+    const email = req.body.email
+    const username = req.body.user_name
+    const password = req.body.password
+
+    const sql = `INSERT INTO users (name, email, username, password) VALUES ('${name}','${email}','${username}','${password}')`
+
+    conn.query(sql, function(err) {
+        if(err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/')
+    })
+})
+////////////////////////////////////////////  fim  cadastro
+
+
+/* const username = 'ttt'
+const password = 123
+
+app.post('/', (req, res) => {
+
+    if(req.body.usuario == username && req.body.senha == password){
+        req.session.username = username
+
+        res.render("logado")
+       
+    }else{
+         res.render("login")
+    }
+    
 })
 
 // pg inicial
@@ -73,8 +110,8 @@ app.get('/', (req, res) =>{
         res.render('login')
     }
     
-    /* res.redirect('/paginainicial') */
-})
+    res.redirect('/paginainicial')
+}) */
 
 /*
 app.get('/clientes', (req, res) => {
