@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars')
 const mysql = require('mysql2')
 const bodyParser = require('body-parser')
 
+const session = require('express-session')
+const flash = require('connect-flash')
+
 const app = express()
 // pegar o body em json
 app.use(
@@ -12,6 +15,16 @@ app.use(
 )
 app.use(express.json())
 //
+
+// sessao
+app.use(session({secret:"qualquercoisa"}))
+/* app.use(flash()) */
+//
+// middleware
+/* app.use((req, res, next) => {
+    res.locals
+}) */
+
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
