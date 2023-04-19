@@ -3,6 +3,7 @@ let ano = document.getElementById("ano")
 let dias = document.querySelector(".date-grid")
 let marcacao = document.querySelector(".confirmar_horario")
 
+
 let now = new Date
 ano_atual = now.getFullYear()
 mes_atual = now.getMonth()

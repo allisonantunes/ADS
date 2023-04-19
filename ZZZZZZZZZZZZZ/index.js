@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser")
 const sessions = require('express-session')
 
+/* const agendamento = require('./controllers/javascript.js')
+agendamento.marca_dia() */
+
 const app = express()
 // pegar o body em json
 app.use(express.urlencoded({extended: true}))
@@ -25,7 +28,6 @@ const conn = mysql.createConnection({
     database: 'agendamento_horarios',
 })
 
-
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized:true,
@@ -44,7 +46,6 @@ conn.connect(function(err) {
     app.listen(3000)
 })
 ////////////////////////////////////////////  fim  conexao com bd
-
 ////////////////////////////////////////////  login
 app.get('/', (req, res) => {
     session=req.session
@@ -53,52 +54,50 @@ app.get('/', (req, res) => {
     }else{
         res.render("login")
     }
-    /* res.render("login") */
 })
-
-const myusername = 'asd'
-const mypassword = 'asdf'
 
 app.post('/', (req, res) => {
 
-/*     const username = req.body.user_name
+    const username = req.body.user_name
     const password = req.body.password
     const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
-
-    conn.query(sql, function(err) {
-        if(err) {
-            console.log(err)
-            return
+    conn.query(sql, [username, password], (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao executar consulta: ' + error.stack)
+          return;
         }
-       res.redirect('/agendar')
-    }) */
-    if(req.body.user_name == myusername && req.body.password == mypassword){
+        console.log(results);
+        if(results.length == ''){
+            console.log("teste");
+        }
+    if (results.length > 0) {
+        console.log('Login bem sucedido.')
+        res.redirect('/agendar')
         session=req.session
-        session.userid=req.body.username
+        session.id=req.body.username
         console.log(req.session)
-        res.render("agendarHorario")
-    }
-    else{
-        res.send('Invalid username or password');
-    }
-     
+      } else {
+        console.log('Email e/ou senha inválidos.')
+      }
+    })
 })
 
 app.get('/logout',(req,res) => {
-    req.session.destroy();
-    res.redirect('/');
+    delete req.session.id.username
+    req.session.destroy()
+    res.redirect('/')
 })
 
-app.get('/agendar', (req, res) => {
+app.get('/agendar',  (req, res) => {
+
     res.render("agendarHorario")
 })
 
 app.post('/agendar', (req, res) => {
+
     res.render("agendarHorario")
 })
-
 //////////////////////////////////////////// fim  login
-
 ////////////////////////////////////////////    cadastro
 app.get('/cadastro', (req, res) => {
     res.render("cadastro")
