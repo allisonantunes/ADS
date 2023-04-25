@@ -8,7 +8,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #fff;
 }
@@ -18,7 +18,7 @@ body {
     padding: 40px;
     border: 2px solid #fff;
     border-radius: 8px;
-    width:280px;
+    width:400px;
 }
 
 .card-header {
@@ -30,7 +30,7 @@ body {
 
 .card-header::after {
     content: "";
-    /* width: 70px; */
+    width: 142px;
     height: 1px;
     background-color: #fff;
     display: block;
@@ -38,11 +38,11 @@ body {
     margin-left: -5px;
 }
 
-.card-content label {
+/* .card-content label {
     color: #fff;
     font-size: 12px;
     opacity: 0.8;
-}
+} */
 
 .card-content-area {
     display: flex;
@@ -84,5 +84,47 @@ body {
 }
 .links {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+    
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+h1{
+    text-align: center;
+    color: #fff;
+  }
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+/* li a:active {
+    background-color: #4CAF50;
+} */
+.paginas{
+    padding: 10px;
+    text-align: center;
 }
