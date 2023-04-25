@@ -6,25 +6,30 @@ include_once("conexao.php");
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<meta charset="UTF-8">
     <title>Listar</title>
     <link rel="stylesheet" href="style/stylee.css">
 </head>
 <body>
+<ul>
+  <li><a href="lista.php">Funcionarios Cadastrados</a></li>
+  <li><a href="index.php">Adicionar Novo Funcionario</a></li>
+  <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+</ul>
     <h1>Lista de funcionarios</h1>
-    <div class="links">
-        <a href="index.php" class="criar_conta">Cadastrar Funcionarios</a>
-    </div>
-    <div class="links">
-            <a href="excluir.php" class="criar_conta">Excluir Funcionarios</a>
-    </div>
-    <div id="login">
 
     <?php
-    if(isset($_SESSION['msg'])){
-        echo $_SESSION['msg'];
-        unset($_SESSION['msg']);
-    }
+        if(isset($_SESSION['msg'])){
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+    ?>
+    
+    <div id="login">
+        <div class="card">
+    <?php
+
     // receber o numero da pg
     $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
     $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
@@ -38,10 +43,13 @@ include_once("conexao.php");
 
     $todos_funcionarios = mysqli_query($conn, $todos_func);
     while($row_func = mysqli_fetch_assoc($todos_funcionarios)) {
-    echo "ID:" . $row_func['id'] . "<br>";
-    echo "Nome:" . $row_func['nome'] . "<br>";
-    echo "Cargo:" . $row_func['cargo'] . "<br>";
-    echo "Salário:" . $row_func['salario'] . "<br>";
+    /* echo "ID:" . $row_func['id'] . "<br>"; */
+    echo "<div>" . "Nome: " . $row_func['nome'] . "</div>";
+    echo "<div>" . "Cargo: " . $row_func['cargo'] . "</div>";
+    echo "<div>" . "Salário: " . $row_func['salario'] . "</div>";
+    echo "<div>" ."<a class='btn btn-outline-danger btn-sm' href='edit_usuario.php?id=" . $row_func['id'] ."'>Editar</a>" 
+    ."<a class='btn btn-outline-danger btn-sm' href='proc_apagar_usuario.php?id=" . $row_func['id'] ."'>Excluir</a>" . "</div>";
+    echo "<hr>" . "</hr>";
     }
 
     $result_pg = "SELECT COUNT(id) AS num_result FROM func";
@@ -51,8 +59,12 @@ include_once("conexao.php");
     $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
 
     $max_links = 2;
+    ?>
+    </div>
+    </div>
 
-    
+    <div class="paginas">
+    <?php
     echo "<a href='lista.php?pagina=1'> Primeira </a>";
     for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina -1; $pag_ant ++){
         if($pag_ant >= 1){

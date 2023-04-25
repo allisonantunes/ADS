@@ -1,5 +1,0 @@
-Um middleware no Express é a maneira de fazer alguma coisa antes da requisição ser processada.
-Coisas como verificar se o usuário está autenticado, logar algum dado para análise ou qualquer
-coisa que precise ser feita antes de devolver uma resposta para a requisição.
-
-npm install body-parser connect-flash express express-handlebars express-session mysql2 nodemon
