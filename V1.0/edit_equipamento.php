@@ -3,10 +3,10 @@
 session_start();
 include_once("conexao.php");
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-$result_funcionario = "SELECT * FROM func WHERE id = '$id'";
-$resultado_funcionario = mysqli_query($conn, $result_funcionario);
-$row_funcionario = mysqli_fetch_assoc($resultado_funcionario);
+$idequipamento = filter_input(INPUT_GET, 'idequipamento', FILTER_SANITIZE_NUMBER_INT);
+$result_equipamento = "SELECT * FROM equipamento WHERE idequipamento = '$idequipamento'";
+$resultado_equipamento = mysqli_query($conn, $result_equipamento);
+$row_equipamento = mysqli_fetch_assoc($resultado_equipamento);
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ $row_funcionario = mysqli_fetch_assoc($resultado_funcionario);
   <li><a href="cad_equipamento.php">Adicionar Novo Equipamento</a></li>
   <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
 </ul>
-    <h1>Editar Funcionário</h1>
+    <h1>Editar Equipamento</h1>
 
     <?php
             if(isset($_SESSION['msg'])){
@@ -36,22 +36,17 @@ $row_funcionario = mysqli_fetch_assoc($resultado_funcionario);
 
     <div id="login">
         
-        <form class="card"method="POST" action="proc_edit_usuario.php">
-        <input type="hidden" value="<?php echo $row_funcionario['id']; ?>" name="id">
+        <form class="card"method="POST" action="proc_edit_equip.php">
+        <input type="hidden" value="<?php echo $row_equipamento['idequipamento']; ?>" name="idequipamento">
 
         <div class="card-content-area">
-            <label for="nome">Nome Completo:</label>
-            <input type="text" value="<?php echo $row_funcionario['nome']; ?>" name="nome" />
+            <label for="nomeequipamento">Nome do Equipamento:</label>
+            <input type="text" value="<?php echo $row_equipamento['nomeequipamento']; ?>" name="nomeequipamento" />
         </div>
 
         <div class="card-content-area">
-            <label for="cargo" >Cargo:</label>
-            <input type="text" value="<?php echo $row_funcionario['cargo']; ?>" name="cargo">
-        </div>
-
-        <div class="card-content-area">
-            <label for="salario">Salário:</label>
-            <input type="text" value="<?php echo $row_funcionario['salario']; ?>" name="salario">
+            <label for="responsavel">ID do Responsável:</label>
+            <input type="text" value="<?php echo $row_equipamento['responsavel']; ?>" name="responsavel">
         </div>
 
         <div class="card-footer">

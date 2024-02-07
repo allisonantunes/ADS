@@ -19,7 +19,7 @@ include_once("conexao.php");
   <li><a href="cad_equipamento.php">Adicionar Novo Equipamento</a></li>
   <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
 </ul>
-    <h1>Lista de funcionarios</h1>
+    <h1>Lista de equipamentos</h1>
 
     <?php
         if(isset($_SESSION['msg'])){
@@ -41,20 +41,19 @@ include_once("conexao.php");
 
     $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
     
-    $todos_func = "SELECT * FROM func LIMIT $inicio, $qnt_result_pg";
+    $todos_equipamento = "SELECT * FROM equipamento LIMIT $inicio, $qnt_result_pg";
 
-    $todos_funcionarios = mysqli_query($conn, $todos_func);
-    while($row_func = mysqli_fetch_assoc($todos_funcionarios)) {
-    echo "ID: " . $row_func['id'] . "<br>";
-    echo "<div>" . "Nome: " . $row_func['nome'] . "</div>";
-    echo "<div>" . "Cargo: " . $row_func['cargo'] . "</div>";
-    echo "<div>" . "Salário: " . $row_func['salario'] . "</div>";
-    echo "<div>" ."<a class='btn btn-outline-danger btn-sm' href='edit_usuario.php?id=" . $row_func['id'] ."'>Editar</a>" 
-    ."<a class='btn btn-outline-danger btn-sm' href='proc_apagar_usuario.php?id=" . $row_func['id'] ."'>Excluir</a>" . "</div>";
+    $todos_equipamento = mysqli_query($conn, $todos_equipamento);
+    while($row_equipamento = mysqli_fetch_assoc($todos_equipamento)) {
+    echo "<div>" . "ID do Equipamento: " . $row_equipamento['idequipamento'] . "</div>";
+    echo "<div>" . "Nome do Equipamento: " . $row_equipamento['nomeequipamento'] . "</div>";
+    echo "<div>" . "ID Responsável: " . $row_equipamento['responsavel'] . "</div>";
+    echo "<div>" ."<a class='btn btn-outline-danger btn-sm' href='edit_equipamento.php?idequipamento=" . $row_equipamento['idequipamento'] ."'>Editar</a>" 
+    ."<a class='btn btn-outline-danger btn-sm' href='proc_apagar_equip.php?idequipamento=" . $row_equipamento['idequipamento'] ."'>Excluir</a>" . "</div>";
     echo "<hr>" . "</hr>";
     }
 
-    $result_pg = "SELECT COUNT(id) AS num_result FROM func";
+    $result_pg = "SELECT COUNT(idequipamento) AS num_result FROM equipamento";
     $resultado_pg = mysqli_query($conn, $result_pg);
     $row_pg = mysqli_fetch_assoc($resultado_pg);
     // echo $row_pg['num_result']
@@ -67,10 +66,10 @@ include_once("conexao.php");
 
     <div class="paginas">
     <?php
-    echo "<a href='lista.php?pagina=1'> Primeira </a>";
+    echo "<a href='lista_equip.php?pagina=1'> Primeira </a>";
     for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina -1; $pag_ant ++){
         if($pag_ant >= 1){
-            echo "<a href='lista.php?pagina=$pag_ant'> $pag_ant </a>";
+            echo "<a href='lista_equip.php?pagina=$pag_ant'> $pag_ant </a>";
         }
     }
         
@@ -78,11 +77,11 @@ include_once("conexao.php");
 
     for($pag_depois = $pagina + 1; $pag_depois <= $pagina + $max_links; $pag_depois ++){
         if($pag_depois <= $quantidade_pg){
-            echo "<a href='lista.php?pagina=$pag_depois'> $pag_depois </a>";
+            echo "<a href='lista_equip.php?pagina=$pag_depois'> $pag_depois </a>";
         }
     }
 
-    echo "<a href='lista.php?pagina=$quantidade_pg'> Ultima </a>";
+    echo "<a href='lista_equip.php?pagina=$quantidade_pg'> Ultima </a>";
 
     ?>
     </div>

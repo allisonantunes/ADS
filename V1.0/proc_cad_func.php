@@ -2,9 +2,9 @@
 session_start();
 include_once("conexao.php");
 
-$nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
-$cargo = filter_input(INPUT_POST, 'cargo', FILTER_SANITIZE_STRING);
-$salario = filter_input(INPUT_POST, 'salario', FILTER_SANITIZE_STRING);
+$nome = filter_input(INPUT_POST, 'nome', FILTER_UNSAFE_RAW);
+$cargo = filter_input(INPUT_POST, 'cargo', FILTER_UNSAFE_RAW);
+$salario = filter_input(INPUT_POST, 'salario', FILTER_UNSAFE_RAW);
 
 
 $result_func = "INSERT INTO func (nome, cargo, salario, created) VALUES ('$nome', '$cargo', '$salario', NOW())";

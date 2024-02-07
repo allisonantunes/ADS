@@ -18,7 +18,7 @@
   <li><a href="cad_equipamento.php">Adicionar Novo Equipamento</a></li>
   <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
 </ul>
-    <h1>Cadastrar novo Funcionario</h1>
+    <h1>Cadastrar novo Equipamento</h1>
     <?php
         if(isset($_SESSION['msg'])){
             echo $_SESSION['msg'];
@@ -27,21 +27,16 @@
     ?>
     <div id="login">
         
-        <form class="card"method="POST" action="proc_cad_func.php">
+        <form class="card"method="POST" action="proc_cad_equip.php">
 
         <div class="card-content-area">
-            <label for="nome">Nome Completo:</label>
-            <input type="text" name="nome" />
+            <label for="nomeequipamento">Nome do Equipamento:</label>
+            <input type="text" name="nomeequipamento" />
         </div>
 
         <div class="card-content-area">
-            <label for="" >Cargo:</label>
-            <input type="text" name="cargo">
-        </div>
-
-        <div class="card-content-area">
-            <label for="salario">Salário:</label>
-            <input type="salario" name="salario">
+            <label for="responsavel">ID do Responsável:</label>
+            <input type="responsavel" name="responsavel">
         </div>
 
         <div class="card-footer">
